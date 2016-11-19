@@ -50,6 +50,8 @@ var requestHandler = function(request, response) {
 
   if (request.url !== '/classes/messages' && request.url !== '/classes/messages/') {
     statusCode = 404;
+    response.writeHead(statusCode, defaultCorsHeaders);
+    response.end();
   }
 
   if (request.method === 'POST') {
@@ -58,6 +60,8 @@ var requestHandler = function(request, response) {
     request.on('data', function(data) {
       var parsedData = JSON.parse(data);
       body.results.push(parsedData);
+      response.writeHead(statusCode, defaultCorsHeaders);
+      response.end();
     });
   }
 
