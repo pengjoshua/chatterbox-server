@@ -19,7 +19,7 @@ var defaultCorsHeaders = {
 };
 
 var body = {
-  results: []
+  results: [{'username': 'Welcome', 'text': 'hi!', 'room': 'lobby'}]
 };
 
 var requestHandler = function(request, response) {
@@ -43,19 +43,21 @@ var requestHandler = function(request, response) {
   var statusCode = 200;
 
   if (request.method === 'OPTIONS') {
-    
+    statusCode = 200;
+    response.writeHead(statusCode, defaultCorsHeaders);
+    response.end();
   }
 
-  if (request.url !== '/classes/messages') {
-    var statusCode = 404;
+  if (request.url !== '/classes/messages' && request.url !== '/classes/messages/') {
+    statusCode = 404;
   }
 
   if (request.method === 'POST') {
-    var statusCode = 201;
+    statusCode = 201;
   
     request.on('data', function(data) {
       var parsedData = JSON.parse(data);
-      body['results'].push(parsedData);
+      body.results.push(parsedData);
     });
   }
 
@@ -89,7 +91,7 @@ var requestHandler = function(request, response) {
 
   // var stringRequest = JSON.stringify(response);
 
-  response.end(JSON.stringify(body));
+  response.end(JSON.stringify({ results: body.results.slice().reverse() }));
 };
 
 // These headers will allow Cross-Origin Resource Sharing (CORS).
