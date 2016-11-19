@@ -65,13 +65,6 @@ var requestHandler = function(request, response) {
     });
   }
 
-  
-    // var headers = defaultCorsHeaders;
-    // headers['Content-Type'] = 'application/json';
-    // response.writeHead(statusCode, headers);
-    // response.end(JSON.stringify(body));
-  
-
   // See the note below about CORS headers.
   var headers = defaultCorsHeaders;
 
