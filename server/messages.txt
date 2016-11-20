@@ -1,1 +1,1 @@
-{"username":"hi","text":"asdf","roomname":"lobby"},{"username":"hi","text":"hi","roomname":"lobby"},{"username":"hi","text":"hello","roomname":"lobby"}
+",[object Object]"
